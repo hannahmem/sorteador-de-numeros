@@ -1,0 +1,55 @@
+aside {
+    margin-bottom: 4.94rem;
+}
+
+aside p {
+    margin-bottom: 2.5rem;
+    font: var(--parag-md);
+    color: var(--content-tertiary);
+}
+
+aside form {
+    display: flex;
+    gap: .75rem;
+
+    & .input-wrapper {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: .5rem;
+
+        width: 5.375rem;
+        margin-bottom: 1.25rem;
+    }
+
+    & div > input {
+        width: 100%;
+        background-color: var(--bg-secondary);
+        border: none;
+        border-radius: .5rem;
+        padding: .25rem .5rem;
+        
+        font: var(--display-sm);
+        color: var(--content-primary);
+        text-align: center;
+    }
+}
+
+aside button {
+    font: var(--label-md);
+    color: var(--content-primary);
+    background-color: var(--bg-tertiary);
+    border: none;
+    border-radius: .5rem;
+
+    margin-top: 2.5rem;
+    padding: 1rem 0;
+    width: 100%;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: .5rem;
+
+    cursor: pointer;
+}
