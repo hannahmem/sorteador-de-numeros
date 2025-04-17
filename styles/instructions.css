@@ -1,0 +1,23 @@
+.instructions {
+    margin-bottom: 2.75rem;
+}
+
+.question-wrapper {
+    display: flex;
+    gap: .5rem;
+
+    & p {
+        font: var(--parag-md);
+        color: var(--content-brand);
+    }
+}
+
+.instructions-wrapper + .instructions-wrapper {
+    margin-top: 2.25rem;
+}
+
+.instructions-wrapper > p {
+    font: var(--parag-sm);
+    color: var(--content-secondary);
+    padding-left: 1.75rem;
+}

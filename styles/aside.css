@@ -3,6 +3,7 @@ aside {
 }
 
 aside p {
+    padding-top: 2px;
     margin-bottom: 2.5rem;
     font: var(--parag-md);
     color: var(--content-tertiary);

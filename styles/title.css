@@ -1,10 +1,10 @@
 header {
-    padding-top: 4.75em;
-    padding-left: 7.5em;
+    margin-top: 4.75em;
 
     & #logo {
         display: flex;
         align-items: center;
+        justify-content: center;
         gap: .6875rem;
     }
     
