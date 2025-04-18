@@ -1,0 +1,48 @@
+.toggle {
+    text-transform: unset;
+    font: var(--parag-sm);
+    color: var(--content-primary);
+}
+
+input[type="checkbox"].toggle {
+    appearance: none;
+    position: absolute;
+}
+
+input[type="checkbox"].toggle + label {
+    position: relative;
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+}
+
+input[type="checkbox"].toggle + label::before {
+    content: "";
+    width: 2rem;
+    height: 1.3rem;
+    background: var(--content-tertiary);
+    border-radius: 1.5rem;
+    margin-right: .5rem;
+    position: relative;
+}
+
+input[type="checkbox"].toggle + label::after {
+    content: "";
+    background-color: var(--content-primary);
+    width: 1rem;
+    height: 1rem;
+    left: 3px;
+    border-radius: 50%;
+    position: absolute;
+
+    transition: transform 250ms ease-in-out;
+}
+
+input[type="checkbox"].toggle:checked + label::before {
+    background: linear-gradient(90deg, #D586E0 0%, #91A1FA 98.93%);;
+}
+
+input[type="checkbox"].toggle:checked + label::after { 
+    content: "";
+    transform: translateX(65%);
+}
