@@ -17,23 +17,87 @@ aside form {
         display: flex;
         flex-direction: column;
         align-items: center;
-        gap: .5rem;
 
         width: 5.375rem;
         margin-bottom: 1.25rem;
+
+        & label {
+            text-align: center;
+
+            & .input-styled {
+                margin-top: .5rem;
+            }
+        }
     }
 
-    & div > input {
-        width: 100%;
-        background-color: var(--bg-secondary);
-        border: none;
-        border-radius: .5rem;
-        padding: .25rem .5rem;
-        
-        font: var(--display-sm);
-        color: var(--content-primary);
-        text-align: center;
-    }
+}
+
+div input {
+    width: 100%;
+    background-color: var(--bg-secondary);
+    border: none;
+    border-radius: .5rem;
+    padding: .25rem .5rem;
+    
+    font: var(--display-sm);
+    color: var(--content-primary);
+    text-align: center;
+    transition: background-color 300ms ease-in-out;
+}
+
+label {
+    transition: color 300ms ease;
+}
+
+label:is(:hover, :focus-within) {
+    color: var(--content-brand);
+    cursor: pointer;
+}
+
+div input:is(:hover, :focus-within) {
+    background-color: var(--bg-tertiary);
+    border: none;
+    outline: none;
+    cursor: pointer;
+}
+
+div .input-styled {
+    position: relative;
+    width: 100%;
+}
+
+div .input-styled::after {
+    content: "";
+    position: absolute;
+    border-radius: .5rem;
+    inset: -1px;
+    opacity: 0;
+    background-image: linear-gradient(
+        90deg,
+        #77C0AF 0%, #D1DC97 14.84%, #E9A9B3 32.15%, #D586E0 65.79%, #91A1FA 84.58%
+    );
+    z-index: -1;
+
+    transition: opacity 300ms ease;
+}
+
+div .input-styled:hover::after,
+label:hover > .input-styled::after {
+    opacity: 1;
+}
+
+div .input-styled:focus-within::after {
+    content: "";
+    position: absolute;
+    border-radius: .5rem;
+    inset: -.15rem;
+    opacity: 1;
+    background-image: linear-gradient(
+        90deg,
+        #77C0AF 0%, #D1DC97 14.84%, #E9A9B3 32.15%, #D586E0 65.79%, #91A1FA 84.58%
+    );
+    z-index: -1;
+    transition: all 150ms ease;
 }
 
 aside button {
@@ -41,6 +105,7 @@ aside button {
     color: var(--content-primary);
     background-color: var(--bg-tertiary);
     border: none;
+    outline: none;
     border-radius: .5rem;
 
     margin-top: 2.5rem;
@@ -53,4 +118,31 @@ aside button {
     gap: .5rem;
 
     cursor: pointer;
+    position: relative;
+
+    transition: background-color 300ms ease;
+}
+
+aside button::after {
+    content: "";
+    position: absolute;
+    border-radius: .5rem;
+    width: 101%;
+    height: 107%;
+    bottom: -1.6px;
+    opacity: 0;
+    background-image: linear-gradient(
+        90deg,
+        #77C0AF 0%, #D1DC97 14.84%, #E9A9B3 32.15%, #D586E0 65.79%, #91A1FA 84.58%
+    );
+    z-index: -1;
+
+    transition: opacity 300ms ease-in-out;
+}
+
+aside button:hover::after,
+aside button:focus-within::after,
+aside button:is(:hover, :focus) {
+    background-color: var(--bg-secondary);
+    opacity: 1;
 }
