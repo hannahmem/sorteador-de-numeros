@@ -49,6 +49,15 @@ main {
     margin: 0 auto;
 }
 
+.grid {
+    display: grid;
+    grid-template-rows: auto;
+    grid-template-areas: 
+        "title"
+        "aside"
+        "instructions"
+}
+
 h1, h2, 
 label, button {
     text-transform: uppercase;
@@ -71,11 +80,27 @@ a {
     text-decoration: none;
 }
 
-@media (width >= 52em) {
-    .grid {
-        padding: 0 8.375em;
-        margin: 0 auto;
-        display: grid;
-        grid-template-columns: 1fr 1fr;
+@media (width >= 54em) {
+    main {
+        width: 85%;
+        padding-top: 6.56em;
+        margin-bottom: 5em;
     }
+
+    .grid {
+        grid-template-columns: 1fr 1fr;
+        grid-template-areas:
+            "title aside"
+            "instructions aside"
+    }
+
+    aside {
+        margin-left: 5.75em;
+        align-content: end;
+    }
+
+    .instructions {
+        max-width: 70%;
+    }
+
 }
