@@ -1,6 +1,7 @@
 .toggle {
+    margin-top: 1.125em;
     text-transform: unset;
-    font: var(--parag-sm);
+    font: var(--parag-md);
     color: var(--content-primary);
 }
 

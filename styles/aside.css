@@ -19,7 +19,7 @@ aside form {
         align-items: center;
 
         width: 5.375rem;
-        margin-bottom: 1.25rem;
+        margin-bottom: .3rem;
 
         & label {
             text-align: center;
@@ -44,10 +44,6 @@ div input {
     text-align: center;
     transition: background-color 300ms ease-in-out;
 }
-
-/* .input-border > #interval1 {
-    width: 99%;
-} */
 
 .input-wrapper > label {
     transition: color 300ms ease;
@@ -74,7 +70,7 @@ div .input-border::after {
     content: "";
     position: absolute;
     border-radius: .5rem;
-    inset: -1.5px -1px -.8px -.9px;
+    inset: -1px;
     opacity: 0;
     background-image: linear-gradient(
         90deg,
@@ -102,4 +98,13 @@ div .input-border:focus-within::after {
     );
     z-index: -1;
     transition: all 150ms ease;
+}
+
+.errorMessage {
+    color: rgb(208, 8, 8);
+}
+
+.error-border {
+    border: 1px solid rgb(208, 8, 8);
+    outline: none;
 }
