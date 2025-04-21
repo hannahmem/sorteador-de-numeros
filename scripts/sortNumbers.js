@@ -17,10 +17,11 @@ const sortNum = () => {
 	const notUniqueArr = []
 
 	for (let i = 0; i < num; i++) {
-		notUniqueArr.push(Math.floor(Math.random() * (interval2Floored - interval1Ceiled + 1) + interval1Ceiled))
+		const randomNum = Math.floor(Math.random() * (interval2Floored - interval1Ceiled + 1) + interval1Ceiled)
+		notUniqueArr.push(`<span class="numbers">${randomNum}</span>`)
 	}
 
-	return notUniqueArr
+	return notUniqueArr.join(' ')
 }
 
 const sortUniqueNum = () => {
@@ -43,6 +44,8 @@ const sortUniqueNum = () => {
 	}
 
 	return Array.from(numSet)
+		.map(num => `<span class="numbers">${num}</span>`)
+		.join(' ')
 }
 
 export { sortNum, sortUniqueNum }

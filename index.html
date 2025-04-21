@@ -44,44 +44,57 @@
         </section>
         
         <aside style="grid-area: aside;">
-            <h2>quero sortear:</h2>
-            <p>Defina o intervalo e a quantidade de números, clique em "Sortear" e veja os resultados na tela. É rápido e fácil!</p>
-            <form class="sorteador">
-                <div class="input-wrapper">
-                    <label for="number">números
-                        <div class="input-border">
-                            <input type="text" id="number">
-                        </div>
-                    </label>
-                </div>
+            <div id="first-aside">
+                <h2>quero sortear:</h2>
+                <p>Defina o intervalo e a quantidade de números, clique em "Sortear" e veja os resultados na tela. É rápido e fácil!</p>
+                <form class="sorteador">
+                    <div class="input-wrapper">
+                        <label for="number">números
+                            <div class="input-border">
+                                <input type="text" id="number">
+                            </div>
+                        </label>
+                    </div>
                 
-                <div class="input-wrapper">
-                    <label for="interval1">
-                        de
-                        <div class="input-border">
-                            <input type="text" id="interval1">
-                        </div>
-                    </label>
-                </div>
+                    <div class="input-wrapper">
+                        <label for="interval1">
+                            de
+                            <div class="input-border">
+                                <input type="text" id="interval1">
+                            </div>
+                        </label>
+                    </div>
                 
-                <div class="input-wrapper">
-                    <label for="interval2">
-                        até
-                        <div class="input-border">
-                            <input type="text" id="interval2">
-                        </div>
-                    </label>
-                </div>
-            </form>
-            
-            <small id="error-msg" class="hidden">*Campos obrigatórios</small>
-            <input role="switch" type="checkbox" id="no-repeat" class="toggle">
-            <label class="toggle" for="no-repeat">Não repetir número</label>
-            <button type="button">sortear
-                <img src="assets/icons/arrow.svg" alt="">
-            </button>
-        </aside>
+                    <div class="input-wrapper">
+                        <label for="interval2">
+                            até
+                            <div class="input-border">
+                                <input type="text" id="interval2">
+                            </div>
+                        </label>
+                    </div>
+                </form>
+                
+                <small id="error-msg" class="hidden">*Campos obrigatórios</small>
+                <input role="switch" type="checkbox" id="no-repeat" class="toggle">
+                <label class="toggle" for="no-repeat">Não repetir número</label>
+                <button type="button">sortear
+                    <img src="assets/icons/arrow.svg" alt="">
+                </button>
+            </div>
 
+            <!-- <div id="second-aside">
+                <h2>resultado do sorteio</h2>
+                <span class="overline">1º resultado</span>
+                <div class="sorted-numbers">
+                    <span class="number"></span>
+                </div>
+                <button>
+                    Sortear novamente
+                    <img src="assets/icons/replay.svg" alt="">
+                </button>
+            </div> -->
+        </aside>
     </main>
 </body>
 </html>

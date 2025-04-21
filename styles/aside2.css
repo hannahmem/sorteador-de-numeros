@@ -1,0 +1,26 @@
+#second-aside {
+    text-align: center;
+
+    & .overline {
+        text-transform: uppercase;
+        color: var(--content-secondary);
+        font: var(--overline);
+    }
+
+    & .sorted-numbers {
+        margin-top: 2.5rem;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-wrap: wrap;
+        gap: 1rem;
+    }
+
+    & .sorted-numbers > .numbers {
+        background-color: var(--content-brand);
+        padding: 1.375rem;
+        border-radius: 1.375rem;
+        color: var(--color-inverse);
+        font: 700 3rem/1.5 var(--ff-mono);
+    }
+}
