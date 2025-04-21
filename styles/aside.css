@@ -105,6 +105,5 @@ div .input-border:focus-within::after {
 }
 
 .error-border {
-    border: 1px solid rgb(208, 8, 8);
-    outline: none;
+    outline: 1px solid rgb(208, 8, 8);
 }

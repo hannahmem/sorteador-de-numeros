@@ -14,25 +14,34 @@ btn.addEventListener("click", () => {
 
 	firstAside.classList.add('hidden')
 	addSortedNumbers()
-		
-
 })
+
+const setupReplayButton = () => {
+	const replayBtn = document.getElementById('replay-btn')
+	if (replayBtn) {
+		replayBtn.addEventListener('click', () => {
+			firstAside.classList.remove('hidden')
+			document.querySelector('#second-aside').classList.add('hidden')
+		})
+	}
+}
 
 const resultDisplay = () => {
 	aside.innerHTML = 
-	`<div id="second-aside">
-		<h2>resultado do sorteio</h2>
-		<span class="overline">1º resultado</span>
-		<div class="sorted-numbers"></div>
-		<button>
-			Sortear novamente
-			<img src="assets/icons/replay.svg" alt="">
-		</button>
-	</div>`
-			
+		`<div id="second-aside">
+			<h2>resultado do sorteio</h2>
+			<span class="overline">1º resultado</span>
+			<div class="sorted-numbers"></div>
+			<button type="button" id="replay-btn">
+				Sortear novamente
+				<img src="assets/icons/replay.svg" alt="">
+			</button>
+		</div>`	
+
+	setupReplayButton()
 	return document.querySelector('.sorted-numbers')
 }
-		
+	
 const addSortedNumbers = () => {
 	const aside = document.querySelector('#second-aside')
 	if (!aside) {
@@ -47,4 +56,3 @@ const addSortedNumbers = () => {
 		sortedNumbersContainer.innerHTML = sortNum()
 	}
 }
-

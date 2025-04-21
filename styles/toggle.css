@@ -6,6 +6,7 @@
 }
 
 input[type="checkbox"].toggle {
+    all: unset;
     appearance: none;
     position: absolute;
 }
