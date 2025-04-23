@@ -56,6 +56,7 @@ const resultDisplay = () => {
 	replayBtn.setAttribute('type', 'button')
 	replayBtn.setAttribute('id', 'replay-btn')
 	replayIcon.setAttribute('src', 'assets/icons/replay.svg')
+	replayIcon.setAttribute('id', 'replayIcon')
 	
 	title.textContent = 'resultado do sorteio'
 	firstResult.textContent = '1º resultado'

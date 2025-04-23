@@ -60,6 +60,11 @@ button:not(:hover, :focus) #arrow {
     animation: backwardsArrow .8s ease backwards;
 }
 
+button:hover #replayIcon,
+button:focus #replayIcon {
+    animation: iconRotation 1.5s ease;
+}
+
 
 @keyframes gradient-rotate {
     0% { --gradient-angle: 0deg;}
@@ -83,5 +88,15 @@ button:not(:hover, :focus) #arrow {
 
     0% {
         transform: translateX(10px);
+    }
+}
+
+@keyframes iconRotation {
+    0% {
+        transform: rotate(0deg);
+    }
+
+    100% {
+        transform: rotate(360deg);
     }
 }
