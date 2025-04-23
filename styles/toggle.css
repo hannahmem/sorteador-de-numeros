@@ -46,5 +46,40 @@ input[type="checkbox"].toggle:checked + label::before {
 
 input[type="checkbox"].toggle:checked + label::after { 
     content: "";
-    transform: translateX(65%);
+
+    animation: moveForwards .5s ease forwards;
+}
+
+input[type="checkbox"].toggle:not(:checked) + label::after { 
+    content: "";
+
+    animation: moveBackwards .5s ease backwards;
+}
+
+@keyframes moveForwards { 
+    0% {
+        transform: translateX(0);
+    }
+
+    50% {
+        transform: translateX(72%);
+    }
+
+    100% {
+        transform: translate(60%);
+    }
+}
+
+@keyframes moveBackwards { 
+    0% {
+        transform: translateX(60%);
+    }
+
+    50% {
+        transform: translateX(-12%);
+    }
+
+    100% {
+        transform: translate(0);
+    }
 }
