@@ -1,87 +1,98 @@
 @property --gradient-angle {
-    syntax: "<angle>";
-    initial-value: 0deg;
-    inherits: false;
+	syntax: '<angle>';
+	initial-value: 0deg;
+	inherits: false;
 }
 
 button {
-    font: var(--label-md);
-    color: var(--content-primary);
-    background-color: var(--bg-tertiary);
-    border: none;
-    outline: none;
-    border-radius: .5rem;
+	font: var(--label-md);
+	color: var(--content-primary);
+	background-color: var(--bg-tertiary);
+	border: none;
+	outline: none;
+	border-radius: 0.5rem;
 
-    margin-top: 2.5rem;
-    padding: 1rem 0;
-    width: 100%;
+	margin-top: 2.5rem;
+	padding: 1rem 0;
+	width: 100%;
 
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    gap: .5rem;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	gap: 0.5rem;
 
-    cursor: pointer;
-    position: relative;
+	cursor: pointer;
+	position: relative;
 
-    transition: background-color 300ms ease;
+	transition: background-color 300ms ease;
 }
 
 button::after {
-    content: "";
-    position: absolute;
-    border-radius: .5rem;
-    width: 101%;
-    height: 107%;
-    opacity: 0;
-    background-image: conic-gradient(
-        from var(--gradient-angle),
-        #77C0AF 0%, #D1DC97 14.84%, #E9A9B3 32.15%, #D586E0 65.79%, #91A1FA 84.58%
-    );
-    z-index: -1;
+	content: '';
+	position: absolute;
+	border-radius: 0.5rem;
+	width: 101%;
+	height: 107%;
+	opacity: 0;
+	background-image: conic-gradient(
+		from var(--gradient-angle),
+		#77c0af 0%,
+		#d1dc97 14.84%,
+		#e9a9b3 32.15%,
+		#d586e0 65.79%,
+		#91a1fa 84.58%
+	);
+	z-index: -1;
 
-    transition: opacity .5s ease-in-out;
-    animation: gradient-rotate 3s linear infinite;
+	transition: opacity 0.5s ease-in-out;
+	animation: gradient-rotate 3s linear infinite;
 }
 
 button:hover::after,
 button:focus::after,
 button:is(:hover, :focus) {
-    background-color: var(--bg-secondary);
-    opacity: 1;
+	background-color: var(--bg-secondary);
+	opacity: 1;
 }
 
 button:hover #arrow,
 button:focus #arrow {
-    animation: forwardArrow .8s ease forwards;
+	animation: forwardArrow 0.8s ease forwards;
 }
 
 button:not(:hover, :focus) #arrow {
-    animation: backwardsArrow .8s ease backwards;
+	animation: backwardsArrow 0.8s ease backwards;
 }
 
+#back-btn > img {
+	transform: scale(-1);
+}
 
 @keyframes gradient-rotate {
-    0% { --gradient-angle: 0deg;}
-    100% { --gradient-angle: 360deg; }
+	0% {
+		--gradient-angle: 0deg;
+	}
+	100% {
+		--gradient-angle: 360deg;
+	}
 }
 
 @keyframes forwardArrow {
-    0% {
-        transform: translateX(0);
-    }
+	0% {
+		transform: translateX(0);
+	}
 
-    100% {
-        transform: translateX(10px);
-    }
+	100% {
+		transform: translateX(10px);
+	}
 }
 
 @keyframes backwardsArrow {
-    100% {
-        transform: translateX(0);
-    }
+	100% {
+		transform: translateX(0);
+	}
 
-    0% {
-        transform: translateX(10px);
-    }
+	0% {
+		transform: translateX(10px);
+	}
 }

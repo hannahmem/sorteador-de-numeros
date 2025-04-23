@@ -1,86 +1,108 @@
-import { sortNum, sortUniqueNum } from "./sortNumbers.js"
-import { inputErrorCheck } from "./validateInputs.js"
+import { sortNum, sortUniqueNum } from './sortNumbers.js';
+import { inputErrorCheck } from './validateInputs.js';
 
-const inputNum = document.querySelector('#number')
-const inputInterval1 = document.querySelector('#interval1')
-const inputInterval2 = document.querySelector('#interval2')
-const aside = document.querySelector('aside')
-const firstAside = document.querySelector('#first-aside')
-const btn = document.querySelector('button')
-const checked = document.querySelector('#no-repeat')
+// const inputNum = document.querySelector('#number');
+// const inputInterval1 = document.querySelector('#interval1');
+// const inputInterval2 = document.querySelector('#interval2');
+const aside = document.querySelector('aside');
+const btn = document.querySelector('button');
+const checked = document.querySelector('#no-repeat');
+const firstAside = document.querySelector('#first-aside');
 
-btn.addEventListener("click", () => { 
-	const invalidInputCheck = inputErrorCheck()
-	if (invalidInputCheck === false) {
-		return
-	}
-
-	const validateSortNums = sortNum()
-	if (!validateSortNums) {
-		inputNum.value = ''
-		inputInterval1.value = ''
-		inputInterval2.value = ''
-		return
-	}
-
-	firstAside.classList.add('hidden')
-	addSortedNumbers()
-	document.querySelector('#second-aside').classList.remove('hidden')
-})
+let secondAside;
 
 const setupReplayButton = () => {
-	const replayBtn = document.getElementById('replay-btn')
+	const replayBtn = document.getElementById('replay-btn');
 	if (replayBtn) {
 		replayBtn.addEventListener('click', () => {
-			firstAside.classList.remove('hidden')
-			document.querySelector('#second-aside').classList.add('hidden')
-
-			inputNum.value = ''
-			inputInterval1.value = ''
-			inputInterval2.value = ''
-		})
+			incrementResultCount();
+			calculateResult();
+		});
 	}
-}
+};
 
-const resultDisplay = () => {
-	const divContainer = document.createElement('div')
-	const title = document.createElement('h2')
-	const firstResult = document.createElement('span')
-	const sortedNumbers = document.createElement('div')
-	const replayBtn = document.createElement('button')
-	const replayIcon = document.createElement('img')
+const incrementResultCount = () => {
+	const resultSpan = document.querySelector('.overline');
+	const resultCount = parseInt(resultSpan.textContent);
+	resultSpan.textContent = `${resultCount + 1}º resultado`;
+};
 
-	divContainer.setAttribute('id', 'second-aside')
-	firstResult.classList.add('overline')
-	sortedNumbers.classList.add('sorted-numbers')
-	replayBtn.setAttribute('type', 'button')
-	replayBtn.setAttribute('id', 'replay-btn')
-	replayIcon.setAttribute('src', 'assets/icons/replay.svg')
-	
-	title.textContent = 'resultado do sorteio'
-	firstResult.textContent = '1º resultado'
-	replayBtn.textContent = 'Sortear novamente'
-	
-	aside.appendChild(divContainer)
-	divContainer.append(title, firstResult, sortedNumbers, replayBtn)
-	replayBtn.appendChild(replayIcon)
+const setupBackButton = () => {
+	const backBtn = document.getElementById('back-btn');
+	if (!backBtn) return;
 
-	setupReplayButton()
+	backBtn.addEventListener('click', () => {
+		console.log('clicked back btn');
 
-	return document.querySelector('#second-aside')
-}
-	
-const addSortedNumbers = () => {
-	const aside = document.querySelector('#second-aside')
-	if (!aside) {
-		resultDisplay()
-	}
+		firstAside.classList.remove('hidden');
+		secondAside.classList.add('hidden');
+	});
+};
 
-	const sortedNumbersContainer = document.querySelector('.sorted-numbers')
+const initializeResultDisplay = () => {
+	secondAside = document.createElement('div');
+	const title = document.createElement('h2');
+	const resultCount = document.createElement('span');
+	const sortedNumbers = document.createElement('div');
+	const replayBtn = document.createElement('button');
+	const backBtn = document.createElement('button');
+	const replayIcon = document.createElement('img');
+	const backIcon = document.createElement('img');
+
+	secondAside.setAttribute('id', 'second-aside');
+	resultCount.classList.add('overline');
+	sortedNumbers.classList.add('sorted-numbers');
+	replayBtn.setAttribute('type', 'button');
+	replayBtn.setAttribute('id', 'replay-btn');
+	replayIcon.setAttribute('src', 'assets/icons/replay.svg');
+
+	backBtn.setAttribute('type', 'button');
+	backBtn.setAttribute('id', 'back-btn');
+	backIcon.setAttribute('src', 'assets/icons/arrow.svg');
+
+	title.textContent = 'resultado do sorteio';
+	resultCount.textContent = '0º resultado';
+	replayBtn.textContent = 'Sortear novamente';
+	backBtn.textContent = 'Voltar';
+
+	aside.appendChild(secondAside);
+	secondAside.append(title, resultCount, sortedNumbers, replayBtn, backBtn);
+	replayBtn.appendChild(replayIcon);
+	backBtn.prepend(backIcon);
+
+	secondAside.classList.add('hidden');
+
+	setupReplayButton();
+	setupBackButton();
+};
+
+const calculateResult = () => {
+	const sortedNumbersContainer = document.querySelector('.sorted-numbers');
 
 	if (checked.checked) {
-		sortedNumbersContainer.innerHTML = sortUniqueNum()
+		sortedNumbersContainer.innerHTML = sortUniqueNum();
 	} else {
-		sortedNumbersContainer.innerHTML = sortNum()
+		sortedNumbersContainer.innerHTML = sortNum();
 	}
-}
+};
+
+const handleUserClick = () => {
+	const invalidInputCheck = inputErrorCheck();
+	if (invalidInputCheck === false) {
+		return;
+	}
+
+	const isSuccess = sortNum();
+	if (!isSuccess) {
+		return;
+	}
+
+	incrementResultCount();
+	calculateResult();
+
+	firstAside.classList.add('hidden');
+	secondAside.classList.remove('hidden');
+};
+
+initializeResultDisplay();
+btn.addEventListener('click', handleUserClick);
