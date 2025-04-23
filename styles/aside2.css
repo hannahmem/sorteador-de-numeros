@@ -14,14 +14,54 @@
         align-items: center;
         justify-content: center;
         flex-wrap: wrap;
-        gap: 1rem;
+        gap: 3rem;
+        position: relative;
     }
 
-    & .sorted-numbers > .numbers {
-        background-color: var(--content-brand);
-        padding: 0 1.375rem;
-        border-radius: 1.375rem;
+    & .numbers {
         color: var(--color-inverse);
         font: 700 3rem/1.5 var(--ff-mono);
+        opacity: 0;
+        animation: numberOpacity .5s 2.5s ease forwards;
+    }
+    
+    & .sorted-numbers::after {
+        content: '';
+        position: absolute;
+        background: var(--content-brand);
+        border-radius: 1.375rem;
+        width: 20%;
+        height: 100%;
+        z-index: -1;
+
+        animation: backgroundOpacity 3s 1s ease forwards, backgroundRotation 2s 2s ease, backgroundOpacityReverse 1s 3s ease reverse;
+    }
+}
+
+@keyframes backgroundRotation {
+    0% { 
+        transform: rotate(0deg);
+    }
+
+    100% {
+        transform: rotate(180deg);
+    }
+}
+
+@keyframes backgroundOpacity {
+    0% {
+        scale: 0;
+        opacity: 0;
+    }
+    
+    50% {
+        scale: 1;
+        opacity: 1;
+    }
+}
+
+@keyframes numberOpacity {
+    to {
+        opacity: 1;
     }
 }
