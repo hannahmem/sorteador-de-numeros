@@ -1,6 +1,9 @@
 import { sortNum, sortUniqueNum } from "./sortNumbers.js"
 import { inputErrorCheck } from "./validateInputs.js"
 
+const inputNum = document.querySelector('#number')
+const inputInterval1 = document.querySelector('#interval1')
+const inputInterval2 = document.querySelector('#interval2')
 const aside = document.querySelector('aside')
 const firstAside = document.querySelector('#first-aside')
 const btn = document.querySelector('button')
@@ -14,6 +17,7 @@ btn.addEventListener("click", () => {
 
 	firstAside.classList.add('hidden')
 	addSortedNumbers()
+	document.querySelector('#second-aside').classList.remove('hidden')
 })
 
 const setupReplayButton = () => {
@@ -22,24 +26,40 @@ const setupReplayButton = () => {
 		replayBtn.addEventListener('click', () => {
 			firstAside.classList.remove('hidden')
 			document.querySelector('#second-aside').classList.add('hidden')
+
+			inputNum.value = ''
+			inputInterval1.value = ''
+			inputInterval2.value = ''
 		})
 	}
 }
 
 const resultDisplay = () => {
-	aside.innerHTML = 
-		`<div id="second-aside">
-			<h2>resultado do sorteio</h2>
-			<span class="overline">1º resultado</span>
-			<div class="sorted-numbers"></div>
-			<button type="button" id="replay-btn">
-				Sortear novamente
-				<img src="assets/icons/replay.svg" alt="">
-			</button>
-		</div>`	
+	const divContainer = document.createElement('div')
+	const title = document.createElement('h2')
+	const firstResult = document.createElement('span')
+	const sortedNumbers = document.createElement('div')
+	const replayBtn = document.createElement('button')
+	const replayIcon = document.createElement('img')
+
+	divContainer.setAttribute('id', 'second-aside')
+	firstResult.classList.add('overline')
+	sortedNumbers.classList.add('sorted-numbers')
+	replayBtn.setAttribute('type', 'button')
+	replayBtn.setAttribute('id', 'replay-btn')
+	replayIcon.setAttribute('src', 'assets/icons/replay.svg')
+	
+	title.textContent = 'resultado do sorteio'
+	firstResult.textContent = '1º resultado'
+	replayBtn.textContent = 'Sortear novamente'
+	
+	aside.appendChild(divContainer)
+	divContainer.append(title, firstResult, sortedNumbers, replayBtn)
+	replayBtn.appendChild(replayIcon)
 
 	setupReplayButton()
-	return document.querySelector('.sorted-numbers')
+
+	return document.querySelector('#second-aside')
 }
 	
 const addSortedNumbers = () => {
