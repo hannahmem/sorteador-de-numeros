@@ -1,3 +1,9 @@
+@property --gradient-angle {
+    syntax: "<angle>";
+    initial-value: 0deg;
+    inherits: false;
+}
+
 button {
     font: var(--label-md);
     color: var(--content-primary);
@@ -27,20 +33,55 @@ button::after {
     border-radius: .5rem;
     width: 101%;
     height: 107%;
-    bottom: -1.6px;
     opacity: 0;
-    background-image: linear-gradient(
-        90deg,
+    background-image: conic-gradient(
+        from var(--gradient-angle),
         #77C0AF 0%, #D1DC97 14.84%, #E9A9B3 32.15%, #D586E0 65.79%, #91A1FA 84.58%
     );
     z-index: -1;
 
-    transition: opacity 300ms ease-in-out;
+    transition: opacity .5s ease-in-out;
+    animation: gradient-rotate 3s linear infinite;
 }
 
 button:hover::after,
-button:focus-within::after,
+button:focus::after,
 button:is(:hover, :focus) {
     background-color: var(--bg-secondary);
     opacity: 1;
+}
+
+button:hover #arrow,
+button:focus #arrow {
+    animation: forwardArrow .8s ease forwards;
+}
+
+button:not(:hover, :focus) #arrow {
+    animation: backwardsArrow .8s ease backwards;
+}
+
+
+@keyframes gradient-rotate {
+    0% { --gradient-angle: 0deg;}
+    100% { --gradient-angle: 360deg; }
+}
+
+@keyframes forwardArrow {
+    0% {
+        transform: translateX(0);
+    }
+
+    100% {
+        transform: translateX(10px);
+    }
+}
+
+@keyframes backwardsArrow {
+    100% {
+        transform: translateX(0);
+    }
+
+    0% {
+        transform: translateX(10px);
+    }
 }

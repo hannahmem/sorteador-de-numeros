@@ -15,6 +15,14 @@ btn.addEventListener("click", () => {
 		return
 	}
 
+	const validateSortNums = sortNum()
+	if (!validateSortNums) {
+		inputNum.value = ''
+		inputInterval1.value = ''
+		inputInterval2.value = ''
+		return
+	}
+
 	firstAside.classList.add('hidden')
 	addSortedNumbers()
 	document.querySelector('#second-aside').classList.remove('hidden')

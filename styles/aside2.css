@@ -1,5 +1,6 @@
 #second-aside {
     text-align: center;
+    margin: 4.375rem 0;
 
     & .overline {
         text-transform: uppercase;
