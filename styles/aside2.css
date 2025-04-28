@@ -14,17 +14,16 @@
         align-items: center;
         justify-content: center;
         flex-wrap: wrap;
-        gap: 3rem;
+        gap: .25rem;
     }
     
     & .numbers {
         position: relative;
         display: inline-block;
-        color: var(--color-inverse);
+        color: transparent;
         font: 700 3rem/1 var(--ff-mono);
         padding: 1.325rem;
-        /* opacity: 0; */
-        /* animation: numberOpacity .5s 2.5s ease forwards; */
+        animation: textFadeIn 1s .7s ease forwards, textColor 1s 1.8s ease forwards;
     }
     
     & .numbers::before {
@@ -37,8 +36,7 @@
         height: 100%;
         z-index: -1;
 
-        animation: backgroundOpacity .7s ease forwards, backgroundRotation 2s .7s ease;
-
+        animation: backgroundScale .7s ease, backgroundReverse 1s 1.8s ease forwards, backgroundRotation 1.8s .5s ease;
     }
 }
 
@@ -52,19 +50,31 @@
     }
 }
 
-@keyframes backgroundOpacity {
+@keyframes backgroundScale {
     0% {
         scale: 0;
     }
 
     100% {
         scale: 1;
-        /* opacity: 1; */
     }
 }
 
-@keyframes numberOpacity {
+@keyframes backgroundReverse{
     to {
-        opacity: 1;
+        scale: .9;
+        opacity: 0;
+    }
+}
+
+@keyframes textFadeIn {
+    to {
+        color: var(--color-inverse);
+    }
+}
+
+@keyframes textColor {
+    to {
+        color: var(--content-brand);
     }
 }
