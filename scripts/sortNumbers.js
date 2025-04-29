@@ -28,7 +28,7 @@ const sortNum = () => {
 		numbers.classList.add('numbers')
 		numbers.textContent = num
 
-		const baseDelay = animationDelay(tempArr.length, index);
+		const baseDelay = setAnimationDelay(tempArr.length, index);
 		numbers.style.setProperty('--text-delay', `${baseDelay + .5}s`);
         numbers.style.setProperty('--color-delay', `${baseDelay + 1.5}s`);
         numbers.style.setProperty('--bg-scale-delay', `${baseDelay}s`);
@@ -68,7 +68,7 @@ const sortUniqueNum = () => {
 		numbers.classList.add('numbers')
 		numbers.textContent = num
 
-		const baseDelay = animationDelay(numbersArray.length, index);
+		const baseDelay = setAnimationDelay(numbersArray.length, index);
 		numbers.style.setProperty('--text-delay', `${baseDelay + .5}s`);
         numbers.style.setProperty('--color-delay', `${baseDelay + 1.5}s`);
         numbers.style.setProperty('--bg-scale-delay', `${baseDelay}s`);
@@ -80,7 +80,7 @@ const sortUniqueNum = () => {
 	return numberSpans
 }
 
-const animationDelay = (quantity, index) => {
+const setAnimationDelay = (quantity, index) => {
 	switch (true) {
 		case quantity <= 10:
 			return index * 0.6

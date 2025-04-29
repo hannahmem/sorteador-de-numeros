@@ -1,9 +1,6 @@
 import { sortNum, sortUniqueNum } from "./sortNumbers.js"
 import { inputErrorCheck } from "./validateInputs.js"
 
-const inputNum = document.querySelector('#number')
-const inputInterval1 = document.querySelector('#interval1')
-const inputInterval2 = document.querySelector('#interval2')
 const aside = document.querySelector('aside')
 const firstAside = document.querySelector('#first-aside')
 const btn = document.querySelector('button')
@@ -31,15 +28,11 @@ const setupReplayButton = () => {
 		replayBtn.addEventListener('click', () => {
 			firstAside.classList.remove('hidden')
 			document.querySelector('#second-aside').classList.add('hidden')
-
-			inputNum.value = ''
-			inputInterval1.value = ''
-			inputInterval2.value = ''
 		})
 	}
 }
 
-const resultDisplay = () => {
+const showResultDisplay = () => {
 	const divContainer = document.createElement('div')
 	const title = document.createElement('h2')
 	const firstResult = document.createElement('span')
@@ -49,6 +42,7 @@ const resultDisplay = () => {
 
 	divContainer.setAttribute('id', 'second-aside')
 	firstResult.classList.add('overline')
+	firstResult.textContent = `1º resultado`
 	sortedNumbers.classList.add('sorted-numbers')
 	replayBtn.setAttribute('type', 'button')
 	replayBtn.setAttribute('id', 'replay-btn')
@@ -56,13 +50,12 @@ const resultDisplay = () => {
 	replayIcon.setAttribute('id', 'replayIcon')
 	
 	title.textContent = 'resultado do sorteio'
-	firstResult.textContent = '1º resultado'
 	replayBtn.textContent = 'Sortear novamente'
-	
+
 	aside.appendChild(divContainer)
 	divContainer.append(title, firstResult, sortedNumbers, replayBtn)
 	replayBtn.appendChild(replayIcon)
-
+	
 	setupReplayButton()
 
 	return document.querySelector('#second-aside')
@@ -71,7 +64,7 @@ const resultDisplay = () => {
 const addSortedNumbers = () => {
 	const aside = document.querySelector('#second-aside')
 	if (!aside) {
-		resultDisplay()
+		showResultDisplay()
 	}
 
 	const sortedNumbersContainer = document.querySelector('.sorted-numbers')
