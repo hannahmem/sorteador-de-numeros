@@ -18,34 +18,60 @@ const sortNum = () => {
 
 	for (let i = 0; i < num; i++) {
 		const randomNum = Math.floor(Math.random() * (interval2Floored - interval1Ceiled + 1) + interval1Ceiled)
-		notUniqueArr.push(`<span class="numbers">${randomNum}</span>`)
+		const numbers = document.createElement('span')
+		numbers.classList.add('numbers')
+		numbers.textContent = randomNum
+
+		const baseDelay = i * 2.5;
+		numbers.style.setProperty('--text-delay', `${baseDelay + .5}s`);
+        numbers.style.setProperty('--color-delay', `${baseDelay + 1.5}s`);
+        numbers.style.setProperty('--bg-scale-delay', `${baseDelay}s`);
+        numbers.style.setProperty('--bg-reverse-delay', `${baseDelay + 1.5}s`);
+        numbers.style.setProperty('--bg-rotate-delay', `${baseDelay + 0.5}s`);
+		notUniqueArr.push(numbers)
 	}
 
-	return notUniqueArr.join(' ')
+	return notUniqueArr
 }
 
 const sortUniqueNum = () => {
 	const num = inputNum.value
 	const interval1 = inputInterval1.value
 	const interval2 = inputInterval2.value
-	const interval1Ceiled = Math.ceil(interval1)
-	const interval2Floored = Math.floor(interval2)
 
-	if (interval2Floored - interval1Ceiled + 1 < num) {
+	const min = Math.ceil(interval1)
+	const max = Math.floor(interval2)
+
+	if (max - min + 1 < num) {
 		alert("Intervalo muito pequeno. Tente novamente!")
 		return false
 	} 
 
 	const numSet = new Set()
-
+	
 	while (numSet.size < num) {
-		const arrUnique = (Math.floor(Math.random() * (interval2Floored - interval1Ceiled + 1) + interval1Ceiled))
+		const arrUnique = (Math.floor(Math.random() * (max - min + 1) + min))
 		numSet.add(arrUnique)
 	}
+	
+	const numberSpans = []
+	const numbersArray = Array.from(numSet)
+	
+	numbersArray.forEach((num, index) => {
+		const numbers = document.createElement('span')
+		numbers.classList.add('numbers')
+		numbers.textContent = num
 
-	return Array.from(numSet)
-		.map(num => `<span class="numbers">${num}</span>`)
-		.join(' ')
+		const baseDelay = index * 2.5;
+		numbers.style.setProperty('--text-delay', `${baseDelay + .5}s`);
+        numbers.style.setProperty('--color-delay', `${baseDelay + 1.5}s`);
+        numbers.style.setProperty('--bg-scale-delay', `${baseDelay}s`);
+        numbers.style.setProperty('--bg-reverse-delay', `${baseDelay + 1.5}s`);
+        numbers.style.setProperty('--bg-rotate-delay', `${baseDelay + 0.5}s`);
+		numberSpans.push(numbers)
+	})
+
+	return numberSpans
 }
 
 export { sortNum, sortUniqueNum }

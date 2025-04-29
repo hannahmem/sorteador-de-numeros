@@ -75,10 +75,17 @@ const addSortedNumbers = () => {
 	}
 
 	const sortedNumbersContainer = document.querySelector('.sorted-numbers')
+	sortedNumbersContainer.innerHTML = ''
+
+	let numbersSpans
 
 	if (checked.checked) {
-		sortedNumbersContainer.innerHTML = sortUniqueNum()
+		numbersSpans = sortUniqueNum()
 	} else {
-		sortedNumbersContainer.innerHTML = sortNum()
+		numbersSpans = sortNum()
 	}
+
+	numbersSpans.forEach(span => {
+		sortedNumbersContainer.appendChild(span)
+	})
 }

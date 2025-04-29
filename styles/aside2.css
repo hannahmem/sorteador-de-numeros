@@ -8,7 +8,7 @@
         font: var(--overline);
     }
 
-    & .sorted-numbers-container {
+    & .sorted-numbers {
         margin-top: 2.5rem;
         display: flex;
         align-items: center;
@@ -23,7 +23,9 @@
         color: transparent;
         font: 700 3rem/1 var(--ff-mono);
         padding: 1.325rem;
-        animation: textFadeIn 1s .7s ease forwards, textColor 1s 1.8s ease forwards;
+        animation: 
+            textFadeIn 1s var(--text-delay) ease forwards, 
+            textColor 1s var(--color-delay) ease forwards;
     }
     
     & .numbers::before {
@@ -35,8 +37,12 @@
         width: 100%;
         height: 100%;
         z-index: -1;
+        opacity: 0;
 
-        animation: backgroundScale .7s ease, backgroundReverse 1s 1.8s ease forwards, backgroundRotation 1.8s .5s ease;
+        animation: 
+            backgroundScale .7s var(--bg-scale-delay) ease forwards, 
+            backgroundReverse 1s var(--bg-reverse-delay) ease forwards, 
+            backgroundRotation 1.2s var(--bg-rotate-delay) ease;
     }
 }
 
@@ -53,9 +59,11 @@
 @keyframes backgroundScale {
     0% {
         scale: 0;
+        opacity: 0;
     }
 
     100% {
+        opacity: 1;
         scale: 1;
     }
 }
