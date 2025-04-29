@@ -14,22 +14,28 @@ const sortNum = () => {
 		return false
 	}
 
+	const tempArr = []
 	const notUniqueArr = []
 
 	for (let i = 0; i < num; i++) {
 		const randomNum = Math.floor(Math.random() * (interval2Floored - interval1Ceiled + 1) + interval1Ceiled)
+		tempArr.push(randomNum)
+		
+	}
+
+	tempArr.forEach((num, index) => {
 		const numbers = document.createElement('span')
 		numbers.classList.add('numbers')
-		numbers.textContent = randomNum
+		numbers.textContent = num
 
-		const baseDelay = i * 2.5;
+		const baseDelay = animationDelay(tempArr.length, index);
 		numbers.style.setProperty('--text-delay', `${baseDelay + .5}s`);
         numbers.style.setProperty('--color-delay', `${baseDelay + 1.5}s`);
         numbers.style.setProperty('--bg-scale-delay', `${baseDelay}s`);
         numbers.style.setProperty('--bg-reverse-delay', `${baseDelay + 1.5}s`);
         numbers.style.setProperty('--bg-rotate-delay', `${baseDelay + 0.5}s`);
 		notUniqueArr.push(numbers)
-	}
+	})
 
 	return notUniqueArr
 }
@@ -62,7 +68,7 @@ const sortUniqueNum = () => {
 		numbers.classList.add('numbers')
 		numbers.textContent = num
 
-		const baseDelay = index * 2.5;
+		const baseDelay = animationDelay(numbersArray.length, index);
 		numbers.style.setProperty('--text-delay', `${baseDelay + .5}s`);
         numbers.style.setProperty('--color-delay', `${baseDelay + 1.5}s`);
         numbers.style.setProperty('--bg-scale-delay', `${baseDelay}s`);
@@ -72,6 +78,17 @@ const sortUniqueNum = () => {
 	})
 
 	return numberSpans
+}
+
+const animationDelay = (quantity, index) => {
+	switch (true) {
+		case quantity <= 10:
+			return index * 0.6
+		case quantity <= 20:
+			return index * 0.5
+		default:
+			return index * 0.3
+	}
 }
 
 export { sortNum, sortUniqueNum }
